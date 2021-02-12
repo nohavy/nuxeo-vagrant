@@ -79,11 +79,11 @@ service apache2 restart
 # configuration Nuxeo 
 useradd -u 1005 -d /opt/nuxeo -m -s /bin/bash nuxeo
 cd /opt/nuxeo
-wget http://cdn.nuxeo.com/nuxeo-8.3/nuxeo-server-8.3-tomcat.zip
+wget https://cdn.nuxeo.com/nuxeo-10.10/nuxeo-server-10.10-tomcat.zip
 
 mkdir deploytmp
 pushd deploytmp
-unzip -q /opt/nuxeo/nuxeo-server-8.3-tomcat.zip
+unzip -q /opt/nuxeo/nuxeo-server-10.10-tomcat.zip
 dist=$(/bin/ls -1 | head -n 1)
 mv $dist ../
 popd
@@ -142,10 +142,10 @@ echo "export JAVA_HOME=/usr/lib/jvm/java-8" >> /etc/profile
 source /etc/profile
 
 cd 
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-apt-get install -y nodejs
+apt install nodejs
 
-npm install -g npm
+apt install npm
+
 npm install -g yo
 
 npm install -g yo nuxeo/generator-nuxeo
