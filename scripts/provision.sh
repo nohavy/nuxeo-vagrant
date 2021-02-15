@@ -142,9 +142,9 @@ echo "export JAVA_HOME=/usr/lib/jvm/java-8" >> /etc/profile
 source /etc/profile
 
 cd 
-apt install nodejs
+apt-get install -y nodejs
 
-apt install npm
+apt-get install -y npm
 
 npm install -g yo
 
