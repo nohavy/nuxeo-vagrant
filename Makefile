@@ -4,7 +4,7 @@ start:
 
 debug:
 	make clean
-	vagrant up --provision --debug > log.txt
+	vagrant up --provision --debug
 
 clean:
 	vagrant destroy --force

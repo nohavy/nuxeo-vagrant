@@ -3,7 +3,8 @@
 apt-get -y autoremove
 
 apt-get install -y curl
-echo "deb http://apt.nuxeo.org/ trusty releases" > /etc/apt/sources.list.d/nuxeo.list
+
+echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
 curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
 
 apt-get update
@@ -14,7 +15,7 @@ apt-get install -y \
     poppler-utils exiftool libwpd-tools ghostscript \
     openjdk-8-jdk libreoffice redis-tools \
     postgresql-client screen \
-    apache2 curl git
+    apache2 git
 
 
 
