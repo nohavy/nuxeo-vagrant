@@ -7,12 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.box = "bento/ubuntu-20.04" # bento is recomended by vagrant docs https://app.vagrantup.com/bento/boxes/ubuntu-20.04
-
-  # config.ssh.private_key_path = key_path TODO CHECK IF NOT NEEDED
-  config.ssh.username = 'root'
-  config.ssh.password = 'vagrant'
-  config.ssh.insert_key = 'true'
-  # config.ssh.forward_agent = True TODO CHECK IF NOT NEEDED
+  config.vm.network “private_network”, ip: "192.168.68.10"
 
   
   # set correct timezone

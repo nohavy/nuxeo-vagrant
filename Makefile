@@ -8,3 +8,6 @@ debug:
 
 clean:
 	vagrant destroy --force
+
+ssh:
+	vagrant ssh
