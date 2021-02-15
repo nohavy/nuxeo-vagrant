@@ -1,3 +1,4 @@
 .vagrant
 packages/jdk-8-linux-x64.tgz
-packages/nuxeo-server-8.3-tomcat.zip
+packages/nuxeo-server-10.10-tomcat.zip
+log.txt

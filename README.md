@@ -1,31 +1,39 @@
-# nuxeo-vagrant
-Démonstration d'une installation d'un serveur Nuxeo sous Ubuntu
+# Nuxeo Vagrant
+Demonstration of an installation of a Nuxeo server under Ubuntu
 
-# Utilisation 
+## Use
 
-Installer Vagrant sur votre poste de travail : https://www.vagrantup.com/
-Installer GIT : https://git-scm.com/downloads
+Install Vagrant on your workstation: https://www.vagrantup.com/
+Install GIT: https://git-scm.com/downloads
+
+```bash
 
 git clone https://github.com/nohavy/nuxeo-vagrant
 cd nuxeo-vagrant
-vagrant up
+make start
 
-Une VM est installée et configurée avec une instance Nuxeo 8.3
+```
 
-La configuration comprend : 
+A VM is installed and configured with a Nuxeo 10.10 instance
+
+The configuration includes:
+
 - jdk 8u40
-- Nuxeo server 8.3
-- un frontal Apache configuré
+- Nuxeo server 10.10 tomcat version
+- a configured Apache front-end
 - fakeSMTP
-- npm, Yeoman et nuxeo/generator-nuxeo
+- npm
+  - Yeoman
+  - nuxeo/generator-nuxeo
 - maven 3.1.1
 
-L'installation et la configuration des outils suivant est donnée en exemple : 
-- une bdd postgres
-- un serveur Redis
-- un serveur ElasticSearch
+The installation and configuration of the following tools is given as an example:
 
-=> voir le fichier scripts/provision.sh pour l'installation et la configuration de ces outils.
+- a postgres bdd
+- a Redis server
+- an Elasticsearch server
+
+> See the scripts / provision.sh file for the installation and configuration of these tools.
 
 
-Vous pouvez vous connecter à Nuxeo depuis votre poste client avec : http://localhost:8080/nuxeo
+You can connect to Nuxeo from your client workstation with: http://localhost:8080/nuxeo

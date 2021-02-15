@@ -7,10 +7,16 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.box = "ubuntu/focal64"
+
+  # config.ssh.private_key_path = key_path TODO CHECK IF NOT NEEDED
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  # config.ssh.forward_agent = True TODO CHECK IF NOT NEEDED
+
   
   # set correct timezone
   require 'time'
-  timezone = 'Indian/Reunion'
+  timezone = 'Europe/Lisbon'
   config.vm.provision :shell, :inline => "if [ $(grep -c UTC /etc/timezone) -gt 0 ]; then echo \"#{timezone}\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata; fi"
   
   config.vm.provider "virtualbox" do |v|
