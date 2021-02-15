@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.box = "bento/ubuntu-20.04" # bento is recomended by vagrant docs https://app.vagrantup.com/bento/boxes/ubuntu-20.04
-  config.vm.network “private_network”, ip: "192.168.68.10"
+  config.vm.network "private_network", ip: "192.168.68.10"
 
   
   # set correct timezone
