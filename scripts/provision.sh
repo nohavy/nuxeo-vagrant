@@ -1,23 +1,16 @@
 #!/usr/bin/env bash
 
-apt-get -y autoremove
+sudo apt -y autoremove
+sudo apt install -y curl
 
-apt-get install -y curl
+sudo apt update
+
+sudo apt install -y unzip python python-requests python-lxml imagemagick dcraw  ffmpeg ffmpeg2theora poppler-utils exiftool libwpd-tools ghostscript openjdk-11-jdk libreoffice redis-tools postgresql-client screen apache2 git
 
 echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
 curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
-
-apt-get update
-
-apt-get install -y \
-    unzip python python-requests python-lxml \
-    imagemagick dcraw  ffmpeg ffmpeg2theora ffmpeg-nuxeo \
-    poppler-utils exiftool libwpd-tools ghostscript \
-    openjdk-8-jdk libreoffice redis-tools \
-    postgresql-client screen \
-    apache2 git
-
-
+sudo apt update
+sudo apt ffmpeg-nuxeo
 
 # Fake SMTP 
 mkdir /tmp/fakesmtp && \
@@ -27,7 +20,7 @@ mkdir /tmp/fakesmtp && \
 screen -d -m -S smtp java -jar /usr/lib/fakeSMTP.jar --start-server --background
 
 # configuration Apache2
-a2enmod proxy proxy_http proxy_balancer lbmethod_byrequests headers
+sudo a2enmod proxy proxy_http proxy_balancer lbmethod_byrequests headers
 printf "\nServerName localhost\n" >> /etc/apache2/apache2.conf
 rm -f /etc/apache2/sites-enabled/*
 cp /vagrant/config/apache/proxy.conf /etc/apache2/sites-available/proxy.conf
