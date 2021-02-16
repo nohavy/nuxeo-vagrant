@@ -34,10 +34,19 @@ cp /vagrant/config/apache/proxy.conf /etc/apache2/sites-available/proxy.conf
 a2ensite proxy.conf
 service apache2 restart
 
-# configuration Nuxeo 
-sudo apt install nuxeo
-
-
+# prepare nuxeo
+useradd -u 1005 -d /opt/nuxeo -m -s /bin/bash nuxeo
+cd /opt/nuxeo
+wget https://cdn.nuxeo.com/nuxeo-10.10/nuxeo-server-10.10-tomcat.zip
+mkdir deploytmp
+pushd deploytmp
+unzip -q /opt/nuxeo/nuxeo-server-10.10-tomcat.zip
+dist=$(/bin/ls -1 | head -n 1)
+mv $dist ../
+popd
+rm -rf deploytmp
+ln -s $dist server
+chmod +x server/bin/nuxeoctl
 # wizard
 echo "nuxeo.wizard.done=true" >> server/bin/nuxeo.conf
 
@@ -47,29 +56,15 @@ server/bin/nuxeoctl mp-install --accept=true --relax=false nuxeo-dam
 server/bin/nuxeoctl mp-install --accept=true --relax=false nuxeo-drive
 server/bin/nuxeoctl mp-install --accept=true --relax=false nuxeo-diff
 
+chown -R nuxeo:nuxeo /opt/nuxeo
 
-## config ES, BDD, REDIS
-# TODO
-# nxconf=/opt/nuxeo/server/bin/nuxeo.conf
+# install Nuxeo 
+sudo apt install nuxeo
 
-# nuxeo.db.name=nuxeo
-# nuxeo.db.user=nuxeo
-# nuxeo.db.password=nuxeo
-# nuxeo.db.host=localhost
-# nuxeo.db.port=5432
-
-# nuxeo.redis.enabled=true
-# nuxeo.redis.host=localhost
-
-# elasticsearch.enabled=true
-# elasticsearch.addressList=localhost:9300
-# elasticsearch.clusterName=nuxeo
-
-cp /vagrant/config/nuxeo/nuxeo /etc/init.d/nuxeo
-chmod +x /etc/init.d/nuxeo
-update-rc.d nuxeo defaults
-service nuxeo start
-
+# cp /vagrant/config/nuxeo/nuxeo /etc/init.d/nuxeo
+# chmod +x /etc/init.d/nuxeo
+# update-rc.d nuxeo defaults
+# service nuxeo start
 
 
 # outils de development

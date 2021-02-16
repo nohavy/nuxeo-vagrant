@@ -1,4 +1,4 @@
-FROM nuxeo:7.10
+FROM nuxeo:latest
 
 # Import nuxeo conf to the docker env
 COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf

@@ -1,4 +1,6 @@
 build:
+	make stop
+	make rmi |:
 	docker build -t $(USERNAME)/nuxeo . | tee build.log
 
 start:
@@ -10,6 +12,8 @@ console:
 
 stop:
 	docker stop $(USERNAME)-nuxeo
+	docker rm $(USERNAME)-nuxeo
 	
-
+rmi:
+	docker rmi $(USERNAME)/nuxeo
 
