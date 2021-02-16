@@ -14,9 +14,9 @@ echo "deb http://ftp.us.debian.org/debian sid main" > /etc/apt/sources.list
 
 sudo apt update
 
-sudo apt install ffmpeg-nuxeo
+sudo apt install -y ffmpeg-nuxeo
 
-sudo apt install openjdk-8-jdk
+sudo apt install -y openjdk-8-jdk
 
 # Fake SMTP 
 mkdir /tmp/fakesmtp && \

@@ -1,4 +1,6 @@
-FROM docker-private.packages.nuxeo.com/nuxeo/nuxeo:2021
+ARG NUXEO_VERSION=2021
+
+FROM docker-private.packages.nuxeo.com/nuxeo/nuxeo:${NUXEO_VERSION}
 
 # Path to POML.xml TODO setup a proper dir via paramter
 COPY /path/to/my-configuration.properties /etc/nuxeo/conf.d/my-configuration.properties
