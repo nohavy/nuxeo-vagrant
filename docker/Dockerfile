@@ -6,21 +6,12 @@ COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 USER root
 
 RUN echo "deb http://httpredir.debian.org/debian jessie non-free" >> /etc/apt/sources.list
-RUN apt-get update && apt-get install -y --no-install-recommends libfaac-dev git apt-utils
+RUN apt-get update -y && apt-get install -y --no-install-recommends libfaac-dev git apt-utils
 
-WORKDIR /tmp
-# Build ffmpeg
-ENV BUILD_YASM true
-ENV LIBFAAC true
-RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git
-WORKDIR ffmpeg-nuxeo
-RUN ./prepare-packages.sh \
- && ./build-yasm.sh \
- && ./build-x264.sh \
- && ./build-libvpx.sh \
- && ./build-ffmpeg.sh \
- && cd /tmp \
- && rm -Rf ffmpeg-nuxeo \
- && rm -rf /var/lib/apt/lists/*
+RUN echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
+RUN curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
+
+RUN apt-get update -y
+RUN apt-get install -y ffmpeg-nuxeo
 
 USER 1000
