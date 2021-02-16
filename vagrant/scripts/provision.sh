@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
 sudo apt -y autoremove
-sudo apt install -y curl
+sudo apt-get install -y software-properties-common
 
 sudo apt update -y
 
-sudo apt install -y unzip python python-requests python-lxml imagemagick dcraw ffmpeg ffmpeg2theora poppler-utils exiftool libwpd-tools ghostscript libreoffice redis-tools postgresql-client screen apache2 git
+sudo apt install -y curl unzip python python-requests python-lxml imagemagick dcraw ffmpeg ffmpeg2theora poppler-utils exiftool libwpd-tools ghostscript libreoffice redis-tools postgresql-client screen apache2 git
+
+wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+
+sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
+sudo apt-get update -y
+sudo apt-get install -y adoptopenjdk-8-hotspot
 
 echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
 curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
@@ -13,12 +20,6 @@ curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
 sudo apt update -y
 
 sudo apt install -y ffmpeg-nuxeo
-
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-
-sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-
-sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot
 
 # Fake SMTP 
 mkdir /tmp/fakesmtp && \
