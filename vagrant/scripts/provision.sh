@@ -3,18 +3,20 @@
 sudo apt -y autoremove
 sudo apt install -y curl
 
-sudo apt update
+sudo apt update -y
 
 sudo apt install -y unzip python python-requests python-lxml imagemagick dcraw ffmpeg ffmpeg2theora poppler-utils exiftool libwpd-tools ghostscript libreoffice redis-tools postgresql-client screen apache2 git
 
 echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
 curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
 
-echo "deb http://ftp.us.debian.org/debian sid main" > /etc/apt/sources.list
-
-sudo apt update
+sudo apt update -y
 
 sudo apt install -y ffmpeg-nuxeo
+
+echo "deb http://ftp.us.debian.org/debian sid main" > /etc/apt/sources.list
+
+sudo apt update -y
 
 sudo apt install -y openjdk-8-jdk
 

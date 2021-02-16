@@ -1,15 +1,26 @@
-ARG NUXEO_VERSION=2021
+FROM nuxeo:latest
 
-FROM docker-private.packages.nuxeo.com/nuxeo/nuxeo:${NUXEO_VERSION}
+# Import nuxeo conf to the docker env
+COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 
-# Path to POML.xml TODO setup a proper dir via paramter
-COPY /path/to/my-configuration.properties /etc/nuxeo/conf.d/my-configuration.properties
+USER root
 
-# we need to be root to run yum commands
-USER 0
-# install RPM Fusion free repository
-RUN yum -y localinstall --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
-# install ffmpeg package
-RUN yum -y install ffmpeg
-# set back original user
-USER 900
+RUN echo "deb http://httpredir.debian.org/debian jessie non-free" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y --no-install-recommends libfaac-dev git
+
+WORKDIR /tmp
+# Build ffmpeg
+ENV BUILD_YASM true
+ENV LIBFAAC true
+RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git
+WORKDIR ffmpeg-nuxeo
+RUN ./prepare-packages.sh \
+ && ./build-yasm.sh \
+ && ./build-x264.sh \
+ && ./build-libvpx.sh \
+ && ./build-ffmpeg.sh \
+ && cd /tmp \
+ && rm -Rf ffmpeg-nuxeo \
+ && rm -rf /var/lib/apt/lists/*
+
+USER 1000
