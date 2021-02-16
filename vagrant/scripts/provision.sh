@@ -14,11 +14,11 @@ sudo apt update -y
 
 sudo apt install -y ffmpeg-nuxeo
 
-echo "deb http://ftp.us.debian.org/debian sid main" > /etc/apt/sources.list
+wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
 
-sudo apt update -y
+sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-sudo apt install -y openjdk-8-jdk
+sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot
 
 # Fake SMTP 
 mkdir /tmp/fakesmtp && \
