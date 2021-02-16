@@ -1,4 +1,4 @@
-FROM nuxeo:latest
+FROM nuxeo:7.10
 
 # Import nuxeo conf to the docker env
 COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
@@ -6,7 +6,7 @@ COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 USER root
 
 RUN echo "deb http://httpredir.debian.org/debian jessie non-free" >> /etc/apt/sources.list
-RUN apt-get update && apt-get install -y --no-install-recommends libfaac-dev git
+RUN apt-get update && apt-get install -y --no-install-recommends libfaac-dev git apt-utils
 
 WORKDIR /tmp
 # Build ffmpeg
