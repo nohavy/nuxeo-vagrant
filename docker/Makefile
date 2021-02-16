@@ -1,15 +1,15 @@
 build:
-	make stop
+	make rm |:
 	make rmi |:
 	docker build -t $(USERNAME)/nuxeo . | tee build.log
 
 start:
-	docker run --name $(USERNAME)-nuxeo -p 8080:8080 $(USERNAME)/nuxeo | tee run.log
+	docker run --name $(USERNAME)-nuxeo -p 8080:8080 -t $(USERNAME)/nuxeo | tee run.log
 
 console:
-	docker run -it --rm $(USERNAME)/nuxeo bash
+	docker run --name $(USERNAME)-console-nuxeo -it --rm $(USERNAME)/nuxeo bash
 
-stop:
+rm:
 	docker stop $(USERNAME)-nuxeo
 	docker rm $(USERNAME)-nuxeo
 	

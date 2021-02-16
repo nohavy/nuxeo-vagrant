@@ -15,3 +15,5 @@ RUN apt-get update -y
 RUN apt-get install -y ffmpeg-nuxeo
 
 USER 1000
+
+# RUN nuxeoctl mp-install nuxeo-web-ui
