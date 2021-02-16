@@ -5,7 +5,7 @@ COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 
 USER root
 
-RUN apt-get install dialog apt-utils
+RUN apt-get install -y dialog apt-utils
 
 RUN echo "deb http://httpredir.debian.org/debian jessie non-free" >> /etc/apt/sources.list
 RUN apt-get update -y && apt-get install -y --no-install-recommends libfaac-dev git apt-utils
