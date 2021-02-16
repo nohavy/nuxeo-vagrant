@@ -7,13 +7,11 @@ sudo apt update -y
 
 sudo apt install -y curl unzip python python-requests python-lxml imagemagick dcraw ffmpeg ffmpeg2theora poppler-utils exiftool libwpd-tools ghostscript libreoffice redis-tools postgresql-client screen apache2 git
 
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-
-sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-
+sudo apt-add-repository 'deb http://security.debian.org/debian-security stretch/updates main'
 sudo apt-get update -y
-sudo apt-get install -y adoptopenjdk-8-hotspot
+sudo apt-get install -y openjdk-8-jdk
 
+ 
 echo "deb http://apt.nuxeo.org/ stretch releases" > /etc/apt/sources.list.d/nuxeo.list
 curl http://apt.nuxeo.org/nuxeo.key | apt-key add -
 
