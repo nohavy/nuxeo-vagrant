@@ -1,10 +1,14 @@
+ifndef PORT
+override PORT = 8080
+endif
+
 build:
 	make rm |:
 	make rmi |:
 	docker build -t $(USERNAME)/nuxeo . | tee build.log
 
 start:
-	docker run --name $(USERNAME)-nuxeo -p 8080:8080 -t $(USERNAME)/nuxeo | tee run.log
+	docker run --name $(USERNAME)-nuxeo -p 8080:$(PORT) -t $(USERNAME)/nuxeo | tee run.log
 
 console:
 	docker run --name $(USERNAME)-console-nuxeo -it --rm $(USERNAME)/nuxeo bash

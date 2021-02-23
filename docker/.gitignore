@@ -1,3 +1,5 @@
 logs.log
 build.log
 run.log
+packages/*
+packages
