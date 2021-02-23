@@ -1,11 +1,16 @@
 FROM nuxeo:10.10
 
+USER root
 # Import nuxeo conf to the docker env
 COPY nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
-COPY packages/*.zip /docker-entrypoint-initnuxeo.d/
+COPY nuxeo.conf /etc/nuxeo/nuxeo.conf
+# COPY packages/*.zip /docker-entrypoint-initnuxeo.d/
+RUN mkdir /tmp/nuxeo
+COPY packages/*.zip /tmp/nuxeo/
+RUN chmod -R 777 /tmp/nuxeo
 
-USER root
 RUN chmod -R 777 /docker-entrypoint-initnuxeo.d
+RUN chmod 777 /etc/nuxeo/nuxeo.conf
 
 RUN echo "deb http://httpredir.debian.org/debian jessie non-free" >> /etc/apt/sources.list
 RUN apt-get update -y && apt-get install -y --no-install-recommends libfaac-dev git apt-utils

@@ -1,5 +1,8 @@
-logs.log
-build.log
-run.log
+logs/*.log
+logs/*.logs
 packages/*
 packages
+sources/*
+sources
+tmp/*
+tmp

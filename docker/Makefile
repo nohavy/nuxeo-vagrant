@@ -5,10 +5,10 @@ endif
 build:
 	make rm |:
 	make rmi |:
-	docker build -t $(USERNAME)/nuxeo . | tee build.log
+	docker build -t $(USERNAME)/nuxeo . | tee ./logs/build.log
 
 start:
-	docker run --name $(USERNAME)-nuxeo -p 8080:$(PORT) -t $(USERNAME)/nuxeo | tee run.log
+	docker run --name $(USERNAME)-nuxeo -p 8080:$(PORT) -t $(USERNAME)/nuxeo | tee ./logs/run.log
 
 console:
 	docker run --name $(USERNAME)-console-nuxeo -it --rm $(USERNAME)/nuxeo bash
@@ -20,3 +20,5 @@ rm:
 rmi:
 	docker rmi $(USERNAME)/nuxeo
 
+compile:
+	./scripts/package_build.sh | tee ./logs/packages_build.log
