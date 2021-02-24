@@ -15,7 +15,7 @@ start:
 
 start-background:
 	echo "Running on port $(DEPLOY_PORT)"
-	docker run -d --name $(USERNAME)-nuxeo -p 8080:$(DEPLOY_PORT) -t $(USERNAME)/nuxeo | tee ./logs/run.log
+	docker run -di --name $(USERNAME)-nuxeo -p 8080:$(DEPLOY_PORT) -t $(USERNAME)/nuxeo --restart unless-stopped httpd
 
 run:
 	make build
