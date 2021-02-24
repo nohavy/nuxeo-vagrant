@@ -2,6 +2,7 @@
 export SOURCES_PATH=sources
 export TMP_PATH=tmp
 export PACKAGE_PATH=packages
+export CURRENT_PATH=$(pwd)
 
 rm -R $TMP_PATH/*
 rm -R $PACKAGE_PATH/*
@@ -25,7 +26,7 @@ for file in $SOURCES_PATH/*.zip; do
                 mvn -B -nsu -V -DskipTests -DskipDocker install
             else
                 echo "=> Does not have poml.xml no need to be compiled move to --> $PACKAGE_PATH"
-                mv $file $PACKAGE_PATH
+                cp $CURRENT_PATH/$SOURCES_PATH/$FILENAME $CURRENT_PATH/$PACKAGE_PATH
             fi
         popd
     else
