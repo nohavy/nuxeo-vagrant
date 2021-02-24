@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file:
-      - ./.env
+      - ./configs/.env
     hostname: nuxeo
     restart: always
     depends_on: 
