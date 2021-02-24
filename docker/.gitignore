@@ -1,8 +1,5 @@
 logs/*.log
 logs/*.logs
-packages/*
-packages
-sources/*
-sources
+packages/*.zip
+sources/*.zip
 tmp/*
-tmp

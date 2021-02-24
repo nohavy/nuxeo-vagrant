@@ -1,10 +1,13 @@
 FROM nuxeo:10.10
 
 USER root
+
 # Import nuxeo conf to the docker env
 COPY ./configs/nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 COPY ./configs/nuxeo.conf /etc/nuxeo/nuxeo.conf
-# COPY packages/*.zip /docker-entrypoint-initnuxeo.d/
+
+# Add packages 
+COPY packages/*.zip /docker-entrypoint-initnuxeo.d/
 RUN mkdir /tmp/nuxeo
 COPY packages/*.zip /tmp/nuxeo/
 RUN chmod -R 777 /tmp/nuxeo

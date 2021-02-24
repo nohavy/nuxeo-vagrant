@@ -1,1 +1,3 @@
-Location of all logs
+# Logs Source
+
+Location where all **logs** are available.
