@@ -7,10 +7,7 @@ COPY ./configs/nuxeo.conf /docker-entrypoint-initnuxeo.d/nuxeo.conf
 COPY ./configs/nuxeo.conf /etc/nuxeo/nuxeo.conf
 
 # Add packages 
-COPY packages/*.zip /docker-entrypoint-initnuxeo.d/
-RUN mkdir /tmp/nuxeo
-COPY packages/*.zip /tmp/nuxeo/
-RUN chmod -R 777 /tmp/nuxeo
+COPY packages/ /docker-entrypoint-initnuxeo.d/
 
 RUN chmod -R 777 /docker-entrypoint-initnuxeo.d
 RUN chmod 777 /etc/nuxeo/nuxeo.conf
