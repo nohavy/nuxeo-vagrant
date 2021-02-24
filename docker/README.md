@@ -17,3 +17,5 @@ To stop do `make clean`.
 ## Install
 
 Use `make deploy` to build and run the instance on the port 9999 by default. To override the port use `make deploy PORT=8885`.
+
+> To check if the port is being used use the command ` lsof -Pi :PORT -sTCP:LISTEN -t` if it has value, then is used.

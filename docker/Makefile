@@ -2,7 +2,7 @@ ifndef PORT
 override PORT = 8080
 endif
 ifndef DEPLOY_PORT
-override DEPLOY_PORT = 9999
+override DEPLOY_PORT = 9998
 endif
 
 build:
