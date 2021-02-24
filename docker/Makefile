@@ -7,7 +7,7 @@ endif
 
 build:
 	make clean
-	make compile
+	make compile |:
 	docker build -t $$(whoami)/nuxeo . | tee ./logs/build.log
 
 start:
