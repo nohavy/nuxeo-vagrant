@@ -16,6 +16,20 @@ To stop do `make clean`.
 
 ## Install
 
-Use `make deploy` to build and run the instance on the port 9999 by default. To override the port use `make deploy PORT=8885`.
+Use `make deploy` to build and run the instance on the port 9999 by default. To override the port use `make deploy PORT=ANY_PORT`.
+
+```bash
+
+cd /opt
+mkdir nuxeo
+cd nuxeo
+sudo chmod -R 777 ./
+git clone https://github.com/JoseRodrigues443/nuxeo-deploy-tools.git
+
+sudo chmod -R 777 nuxeo-deploy-tools
+cd nuxeo-deploy-tools/docker
+make deploy
+
+```
 
 > To check if the port is being used use the command ` lsof -Pi :PORT -sTCP:LISTEN -t` if it has value, then is used.
