@@ -1,5 +1,5 @@
 ifndef PORT
-override PORT = 8080
+override PORT = 9998
 endif
 ifndef DEPLOY_PORT
 override DEPLOY_PORT = 9998
@@ -11,11 +11,11 @@ build:
 	docker build -t 3d.investigation/nuxeo . | tee ./logs/build.log
 
 start:
-	docker run --name 3d.investigation-nuxeo -p 8080:$(PORT) -t 3d.investigation/nuxeo | tee ./logs/run.log
+	docker run --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(PORT):8080 -t 3d.investigation/nuxeo | tee ./logs/run.log 
 
 start-background:
 	echo "Running on port $(DEPLOY_PORT)"
-	docker run -di --name 3d.investigation-nuxeo -p 8080:$(DEPLOY_PORT) -t 3d.investigation/nuxeo --restart unless-stopped httpd
+	docker run -di --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(DEPLOY_PORT):8080 -t 3d.investigation/nuxeo --restart unless-stopped httpd
 
 run:
 	make build
@@ -26,7 +26,7 @@ deploy:
 	make start-background
 
 console:
-	docker run --name 3d.investigation-console-nuxeo -it --rm 3d.investigation/nuxeo bash
+	docker run --name 3d.investigation-console-nuxeo --env-file ./configs/.env -it --rm 3d.investigation/nuxeo bash
 
 rm:
 	docker stop 3d.investigation-nuxeo
