@@ -10,12 +10,13 @@ build:
 	make compile |:
 	docker build -t 3d.investigation/nuxeo . | tee ./logs/build.log
 
-start:
-	docker run --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(PORT):8080 -t 3d.investigation/nuxeo | tee ./logs/run.log 
-
 start-background:
 	echo "Running on port $(DEPLOY_PORT)"
-	docker run -di --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(DEPLOY_PORT):8080 -t 3d.investigation/nuxeo --restart unless-stopped httpd
+	docker run --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(DEPLOY_PORT):8080 -t 3d.investigation/nuxeo | tee ./logs/run.log 
+
+start:
+	echo "Running on port $(PORT)"
+	docker run -di --name 3d.investigation-nuxeo --env-file ./configs/.env -p $(PORT):8080 -t 3d.investigation/nuxeo --restart unless-stopped httpd
 
 run:
 	make build
