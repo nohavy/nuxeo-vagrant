@@ -1,5 +1,16 @@
 # Nuxeo Environment Tools
 
+- [Nuxeo Environment Tools](#nuxeo-environment-tools)
+  - [Description](#description)
+  - [How to use](#how-to-use)
+    - [Requirements](#requirements)
+  - [Structure](#structure)
+  - [License](#license)
+
+## Description
+
+The object of this project is to allow to raise a Nuxeo Platform on a local machine or even on a live env.
+
 This project is a fork from [the nohavy/nuxeo-vagrant project that is 4 years old](https://github.com/nohavy/nuxeo-vagrant), and that only implements vagrant.
 
 This project updates the vagrant configs, using `nuxeo 10.10` and also adds a docker implementation, useing `docker-compose` or a stand alone `docker` implementation.
